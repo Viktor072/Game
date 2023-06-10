@@ -33,6 +33,34 @@ public class GameTest {
     }
 
     @Test
+    void testWhenSecondPlayerWin() {
+        Player sergey = new Player(1, "Sergey", 100);
+        Player petr = new Player(2, "Petr", 120);
+        Game game = new Game();
+
+        game.register(sergey);
+        game.register(petr);
+        int actual = game.round("Sergey", "Petr" );
+        int expected = 2;
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void testWhenFirstPlayerWin() {
+        Player oleg = new Player(1, "Oleg", 150);
+        Player masha = new Player(2, "Masha", 100);
+        Game game = new Game();
+
+        game.register(oleg);
+        game.register(masha);
+        int actual = game.round("Oleg", "Masha" );
+        int expected = 1;
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     void shouldRegisterManyPlayers() {
         Player player1 = new Player(1, "Sergey", 20);
         Player player2 = new Player(2, "Petr", 15);
@@ -52,7 +80,8 @@ public class GameTest {
         players.register(player7);
 
         Collection<Player> actual = players.findAll();
-        Collection<Player> expected = List.of(player1, player2, player3, player4, player5, player6, player7);
+        Collection<Player> expected = List.of(player1, player2, player3, player4, player5, player6,
+                player7);
 
         Assertions.assertEquals(expected, actual);
     }
@@ -126,4 +155,3 @@ public class GameTest {
     }
 
 }
-
